@@ -28,3 +28,6 @@ android {
 }
 
 apply from: '../build.dependencies.gradle'
+
+tasks.register("prepareKotlinBuildScriptModel") {}
+
