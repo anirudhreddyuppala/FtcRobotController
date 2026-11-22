@@ -24,13 +24,12 @@ import com.qualcomm.robotcore.hardware.PIDFCoefficients;
  * we will also need to adjust the "PIDF" coefficients with some that are a better fit for our application.
  */
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
 @TeleOp()
 
-public class BB_TeleOp extends OpMode {
+public class BB_TeleOp_old extends OpMode {
 
     // Declare OpMode members.
     private DcMotor leftFrontDrive = null;

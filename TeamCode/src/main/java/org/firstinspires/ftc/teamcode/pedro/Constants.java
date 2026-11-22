@@ -67,31 +67,6 @@ public class Constants {
             }
     );
 
-    /*public static ForesightConfig foresightConfig = new ForesightConfig(
-            c -> {
-                Controller primaryTranslationalForward = Controller.proportional(0.18784501985743288);
-                Controller secondaryTranslationalForward = Controller.proportional(0.06940371552594887);
-                Controller primaryTranslationalLateral = Controller.proportional(0.23138278748407856);
-                Controller secondaryTranslationalLateral = Controller.proportional(0.08548975731341774);
-
-                c.forwardTranslational.set(Controller.piecewise(secondaryTranslationalForward).put(2.5, primaryTranslationalForward));
-                c.strafeTranslational.set(Controller.piecewise(secondaryTranslationalLateral).put(2.5, primaryTranslationalLateral));
-
-                c.coast.set(Controller.proportionalFeedforward(0.01567628934459508));
-                c.brake.set(Controller.proportionalFeedforward(0.013324845942905818));
-
-                c.headingFeedback.set(Controller.proportional(2.64084223832534));
-                c.headingBrakeCoefficients.set(Vector2D.cartesian(0.04317878642244903, 0.005664717185761555));
-
-                c.linearBrakeCoefficients.set(Matrix.diag(0.07993714042165997, 0.07605528531697134));
-                c.quadraticBrakeCoefficients.set(Matrix.diag(8.29100560753446E-4, 8.771652875536773E-4));
-
-                c.maxAchievableForwardVelocity.set(64.95598329317632);
-                c.maxAchievableStrafeVelocity.set(54.14145161880232);
-                c.naturalForwardDeceleration.set(28.94900032921723);
-                c.naturalStrafeDeceleration.set(60.14001064264417);
-            }
-    );*/
     public static Follower create(HardwareMap h) {
         return new Follower(
                 new PinpointLocalizer(h, localizerConfig),

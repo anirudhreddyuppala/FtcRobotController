@@ -1,32 +1,25 @@
 
 package org.firstinspires.ftc.teamcode.pedro;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-
-import com.pedropathing.api.PoseFactory;
-import com.pedropathing.api.Paths;
-import com.pedropathing.follower.Follower;
-import com.pedropathing.math.Pose;
-import com.pedropathing.paths.Path;
-
-import com.pedropathing.ivy.Command;
-import com.pedropathing.ivy.Scheduler;
-
 import static com.pedropathing.api.Paths.line;
 import static com.pedropathing.ivy.Scheduler.schedule;
 import static com.pedropathing.ivy.groups.Groups.sequential;
-import static com.pedropathing.ivy.commands.Commands.conditional;
-import static com.pedropathing.ivy.commands.Commands.instant;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 
+import com.pedropathing.api.PoseFactory;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.ivy.Command;
+import com.pedropathing.ivy.Scheduler;
+import com.pedropathing.math.Pose;
+import com.pedropathing.paths.Path;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@Autonomous()
-public class BlueAutoFull extends OpMode {
+
+@Autonomous(name = "BB_Pedro_Auto_Short", group = "BIOBUZZ")
+public class BBAutoShort extends OpMode {
 
     // ------------------------------------------------
     // HARDWARE
@@ -58,9 +51,9 @@ public class BlueAutoFull extends OpMode {
     // ------------------------------------------------
 
     // Example value. Tune this for your launcher.
-    private static final double LAUNCHER_VELOCITY = 350;
+    public final int LAUNCHER_VELOCITY = 350;
 
-    private static final double WINDMILL_POWER = 0.60;
+    public final double WINDMILL_POWER = 0.20;
 
     // Four windmill activations
     private static final int WINDMILL_CYCLES = 6;
@@ -72,7 +65,7 @@ public class BlueAutoFull extends OpMode {
     private static final long WINDMILL_INTERVAL_MS = 1800;
 
     // Duration of each windmill activation
-    private static final long WINDMILL_ON_MS = 200;
+    private static final long WINDMILL_ON_MS = 300;
 
     // Timer for the mechanism sequence
     private long mechanismStartTime;
@@ -188,17 +181,17 @@ public class BlueAutoFull extends OpMode {
         return sequential(
 
                 // Path 1
-                follow(follower, path1CommandPath()),
+                follow(follower, path1CommandPath())
 
                 // Launcher ON, windmill activates four times.
                 // Intake remains OFF.
-                shootAndRotateWindmill(),
+                //shootAndRotateWindmill(),
 
                 // Path 2
-                follow(follower, path2CommandPath()),
+                //follow(follower, path2CommandPath()),
 
                 // Path 3
-                follow(follower, path3CommandPath())
+                //follow(follower, path3CommandPath())
         );
     }
 
@@ -222,7 +215,6 @@ public class BlueAutoFull extends OpMode {
                 DcMotor.class, "intake");
 
         // Safe mechanism initialization
-        launcher.setPower(0);
         launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         launcher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
@@ -274,7 +266,7 @@ public class BlueAutoFull extends OpMode {
                 Math.toDegrees(follower.pose().heading()));
 
         telemetry.addData(
-                "Launcher velocity",
+                "Launcher velocity A",
                 launcher.getVelocity());
 
         telemetry.addData(
